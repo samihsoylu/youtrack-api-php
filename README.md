@@ -2,7 +2,7 @@
 This is an implementation for communicating with the JetBrains YouTrack RestAPI. This library covers basic resource calls available in the [YouTrack RestAPI docs](https://www.jetbrains.com/help/youtrack/devportal/api-resources.html). Using this library, you can create, update, delete issues in your YouTrack instance.
 
 ## Disclaimer
-YouTrack is a very customizable issue tracking system. This library will likely not function if you have customized your fields in your YouTrack instance. In order to make use of this library, you will have to fork this project and make adjustments to the Repository classes accordingly.   
+YouTrack is a very customizable issue tracking system. This library will likely not function if you have customized your fields in your YouTrack instance. In order to make use of this library, you may have to fork this project and make adjustments to the Repository classes accordingly.   
 
 ## Features
 - [x] Create issues
