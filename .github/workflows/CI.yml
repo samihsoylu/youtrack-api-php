@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Code quality check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: MilesChou/composer-action/8.0@master
+      - uses: actions/checkout@v2
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --no-interaction --strict
+
+      - name: Check for PHP syntax errors
+        run: ./vendor/bin/parallel-lint .
+
+      - name: Validate PHP code style
+        run: ./vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no .
