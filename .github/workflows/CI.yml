@@ -15,8 +15,11 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: composer validate --no-interaction --strict
 
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
       - name: Check for PHP syntax errors
-        run: ./vendor/bin/parallel-lint .
+        run: ./vendor/bin/parallel-lint --exclude vendor/ .
 
       - name: Validate PHP code style
         run: ./vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no .
