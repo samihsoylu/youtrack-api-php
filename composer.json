@@ -1,0 +1,25 @@
+{
+    "name": "samihsoylu/youtrack-api-php",
+    "description": "YouTrack RestAPI library for PHP",
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Samih Soylu",
+            "email": "mail@samihsoylu.nl"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.2"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master",
+        "php-parallel-lint/php-parallel-lint": "dev-master",
+        "friendsofphp/php-cs-fixer": "^2.16"
+    },
+    "autoload": {
+        "psr-4": {"YouTrackAPI\\": "src/"}
+    }
+}
