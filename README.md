@@ -33,6 +33,6 @@ composer require samihsoylu/youtrack-api-php
 
 Please look inside the [examples/ directory](https://github.com/samihsoylu/youtrack-api-php/tree/master/examples) for more information on how to use the api client.
 
-This library has been tested in a YouTrack instance that has the following fields: Priority, Type, Assignee, State, and Estimation. The field names in your YouTrack project must be identical for this library to work out of the box. 
+This library has been tested in a YouTrack instance that has the following fields: Priority, Type, Assignee, State, and Estimation. These field names must exist in your YouTrack project for this library to work out of the box. 
 
 <img src="https://nivano.nl/downloads/youtrack-fields-menu.png" alt="screenshot" height="312px" width="280px" />
