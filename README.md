@@ -1,8 +1,14 @@
 # YouTrack API PHP
+
+[![GitHub license](https://img.shields.io/github/license/samihsoylu/youtrack-api-php?style=for-the-badge)](https://github.com/samihsoylu/youtrack-api-php/blob/master/LICENSE)
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/samihsoylu/youtrack-api-php?style=for-the-badge)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/samihsoylu/youtrack-api-php?label=stable&style=for-the-badge)
+![Packagist Downloads](https://img.shields.io/packagist/dt/samihsoylu/youtrack-api-php?style=for-the-badge)
+
 This is an implementation for communicating with the JetBrains YouTrack RestAPI. This library covers basic resource calls available in the [YouTrack RestAPI docs](https://www.jetbrains.com/help/youtrack/devportal/api-resources.html). Using this library, you can create, update, delete issues in your YouTrack instance.
 
 ## Disclaimer
-YouTrack is a very customizable issue tracking system. This library will likely not function if you have customized your fields in your YouTrack instance. In order to make use of this library, you may have to fork this project and make adjustments to the Repository classes accordingly.   
+YouTrack is a very customizable issue tracking system. This library will likely not function if you have customized your fields in your YouTrack instance. In order to make use of this library, you may have to fork this project and make adjustments to the Repository classes accordingly.
 
 ## Features
 - [x] Create issues
