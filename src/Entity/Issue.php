@@ -2,7 +2,7 @@
 
 namespace YouTrackAPI\Entity;
 
-use YouTrackAPI\HttpClient\Entity\Issue\CustomField;
+use YouTrackAPI\Entity\Issue\CustomField;
 
 class Issue
 {

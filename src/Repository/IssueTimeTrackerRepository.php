@@ -2,6 +2,8 @@
 
 namespace YouTrackAPI\Repository;
 
+use YouTrackAPI\Entity\Issue\WorkItem;
+
 class IssueTimeTrackerRepository extends AbstractRepository
 {
     /**
@@ -36,7 +38,14 @@ class IssueTimeTrackerRepository extends AbstractRepository
             ]
         ]);
 
-        return $this->api->get("/issues/{$issueIdentifier}/timeTracking/workItems{$parameters}");
+        $workItemArray = $this->api->get("/issues/{$issueIdentifier}/timeTracking/workItems{$parameters}");
+
+        $workItems = [];
+        foreach ($workItemArray as $workItem) {
+            $workItems[] = WorkItem::fromArray($workItem);
+        }
+
+        return $workItems;
     }
 
     /**
@@ -44,8 +53,9 @@ class IssueTimeTrackerRepository extends AbstractRepository
      *
      * @param string $issueIdentifier
      * @param string $message
-     * @param int $timeSpent
+     * @param int $timeSpentInMinutes
      * @return string Issue work item id
+     * @throws \JsonException
      */
     public function createWorkItem(string $issueIdentifier, string $message, int $timeSpentInMinutes): string
     {
