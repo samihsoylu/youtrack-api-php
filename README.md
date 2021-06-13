@@ -11,9 +11,9 @@ This is an implementation for communicating with the JetBrains YouTrack RestAPI.
 YouTrack is a very customizable issue tracking system. This library will likely not function if you have customized your fields in your YouTrack instance. In order to make use of this library, you may have to fork this project and make adjustments to the Repository classes accordingly.
 
 ## Feature highlights 
-- [x] Query YouTrack for information about a projects, and issues. 
+- [x] Query YouTrack for information about projects, and issues. 
 - [x] Create, update and delete issues.
-- [x] Add time entries to issues.
+- [x] Add time spent to issues.
 
 ## Requirements
 
