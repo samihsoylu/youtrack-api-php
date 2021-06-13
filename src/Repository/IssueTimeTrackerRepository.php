@@ -2,6 +2,8 @@
 
 namespace YouTrackAPI\Repository;
 
+use YouTrackAPI\Entity\Issue\WorkItem;
+
 class IssueTimeTrackerRepository extends AbstractRepository
 {
     /**
@@ -10,7 +12,7 @@ class IssueTimeTrackerRepository extends AbstractRepository
      * @param string $issueIdentifier
      * @return array
      */
-    public function getAllWorkItemsForIssue(string $issueIdentifier): array
+    public function getAllExistingWorkItemsInIssue(string $issueIdentifier): array
     {
         $parameters = $this->generateGetRequestParams([
             'id',
@@ -36,7 +38,14 @@ class IssueTimeTrackerRepository extends AbstractRepository
             ]
         ]);
 
-        return $this->api->get("/issues/{$issueIdentifier}/timeTracking/workItems{$parameters}");
+        $workItemArray = $this->api->get("/issues/{$issueIdentifier}/timeTracking/workItems{$parameters}");
+
+        $workItems = [];
+        foreach ($workItemArray as $workItem) {
+            $workItems[] = WorkItem::fromArray($workItem);
+        }
+
+        return $workItems;
     }
 
     /**
@@ -44,10 +53,11 @@ class IssueTimeTrackerRepository extends AbstractRepository
      *
      * @param string $issueIdentifier
      * @param string $message
-     * @param int $timeSpent
+     * @param int $timeSpentInMinutes
      * @return string Issue work item id
+     * @throws \JsonException
      */
-    public function createWorkItem(string $issueIdentifier, string $message, int $timeSpentInMinutes): string
+    public function createWorkItem(string $issueIdentifier, string $message, int $timeSpentInMinutes, string $workItemTypeId): string
     {
         $body = [
             'text' => $message,
@@ -55,13 +65,39 @@ class IssueTimeTrackerRepository extends AbstractRepository
                 'minutes' => $timeSpentInMinutes
             ],
             'type' => [
-                // Development
-                'id' => '63-0',
+                'id' => $workItemTypeId,
             ],
         ];
 
         $response = $this->api->post("/issues/{$issueIdentifier}/timeTracking/workItems", $body);
 
         return $response['id'];
+    }
+
+    /**
+     * @return WorkItem\Type[]
+     */
+    public function getAllWorkItemTypesForProject(string $projectId): array
+    {
+        $workItemTypeArray = $this->api->get("/admin/projects/{$projectId}/timeTrackingSettings/workItemTypes?fields=id,name,url");
+
+        $workItemTypes = [];
+        foreach ($workItemTypeArray as $workItemType) {
+            $workItemTypes[] = WorkItem\Type::fromArray($workItemType);
+        }
+
+        return $workItemTypes;
+    }
+
+    public function getWorkItemTypeForProjectByName(string $projectId, string $workItemTypeName): ?WorkItem\Type
+    {
+        $workItemTypes = $this->getAllWorkItemTypesForProject($projectId);
+        foreach ($workItemTypes as $workItemType) {
+            if ($workItemType->getName() === $workItemTypeName) {
+                return $workItemType;
+            }
+        }
+
+        return null;
     }
 }

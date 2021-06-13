@@ -23,7 +23,7 @@ $issueIdentifier = $api->issue()->create(
     'Description',
     'State (Waiting For Support, In Progress, On Hold, Fixed, etc..)',
     'Assignee',
-    'Type (Security, Bug, Enchancement, etc..)',
+    'Type (Security, Bug, Enhancement, etc..)',
     120 // 2 hours, time estimated in minutes
 );
 
