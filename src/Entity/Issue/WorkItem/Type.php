@@ -19,4 +19,12 @@ class Type
     {
         return $this->name;
     }
+
+    public static function fromArray(array $workItemType)
+    {
+        return new self(
+            $workItemType['id'],
+            $workItemType['name'],
+        );
+    }
 }
